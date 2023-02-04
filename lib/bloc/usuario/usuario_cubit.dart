@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:bloc/bloc.dart';
 import 'package:estado_app/models/usuario.dart';
 import 'package:meta/meta.dart';
@@ -24,8 +22,17 @@ class UsuarioCubit extends Cubit<UsuarioState> {
   void agregarProfesion() {
     late final currentState = state;
     if (currentState is UsuarioActivo) {
-      final newUser = currentState.usuario.copyWith(profesiones);
+      final newProfesiones = [
+        ...currentState.usuario.profesiones!,
+        'Profesiones ${currentState.usuario.profesiones!.length + 1}'
+      ];
+      final newUser =
+          currentState.usuario.copyWith(profesiones: newProfesiones);
       emit(UsuarioActivo(newUser));
     }
+  }
+
+  void borrarUsuario() {
+    emit(Usuarioinitial());
   }
 }

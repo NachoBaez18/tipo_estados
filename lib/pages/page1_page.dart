@@ -10,6 +10,12 @@ class Pagina1Page extends StatelessWidget {
       appBar: AppBar(
         title: Text('Pagina 1'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () => context.read<UsuarioCubit>().borrarUsuario(),
+            icon: Icon(Icons.delete),
+          )
+        ],
       ),
       body: BodyScaffold(),
       floatingActionButton: FloatingActionButton(
